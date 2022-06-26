@@ -1,13 +1,13 @@
-import db from './_utils/db';
+import dbc from './_db';
 
 export default async (req, res) => {
 
   try {
-    const dbc = await db();
-    const collection = dbc.collection('expenses');
+    const db = await dbc();
+    const collection = db.collection('expenses');
     const data = await collection.find({}).toArray();
-    console.log(data);
-    console.log(req);
+    console.log('data', data);
+    console.log('req.props', Object.getOwnPropertyNames(req));
     res.status(200).json({ message: 'Okay' });
   } catch (err) {
     console.error(err);
