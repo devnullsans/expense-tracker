@@ -1,5 +1,4 @@
 import dbc from './_db';
-import { ObjectID } from 'mongodb';
 
 export default async (req, res) => {
 
