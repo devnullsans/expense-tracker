@@ -15,7 +15,7 @@ export default async (req, res) => {
         return res.status(200).json({ data: await collection.find({}).toArray() });
       }
       case 'POST': {
-				const { expense } = body;
+				const { expense } = req.body;
 				return res.status(200).json({ data: await collection.insertOne(expense) });
 			}
       default:
