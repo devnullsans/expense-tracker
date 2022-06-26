@@ -12,6 +12,7 @@ export default async (req, res) => {
     console.log('req.statusCode', req.statusCode);
     console.log('req.statusMessage', req.statusMessage);
     console.log('req.cookies', req.cookies);
+    console.log('req.query', req.query);
     console.log('req.body', req.body);
     res.status(200).json({ message: 'Okay' });
   } catch (err) {
