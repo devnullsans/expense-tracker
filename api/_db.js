@@ -3,7 +3,6 @@ const uri = process.env.MONGODB_URI;
 const dbn = process.env.MONGODB_NAME;
 let conn = global.conn;
 export default async () => {
-  console.log('num', num);
   if (conn) {
     console.log("mongodb connection cached");
     return conn;
