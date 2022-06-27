@@ -1,5 +1,5 @@
 curl --request POST \
-  --url https://vercel-tests-rouge.vercel.app/api/ \
+  --url https://vercel-tests-kappa.vercel.app/api \
   --header 'content-type: application/json' \
   --data '{
     "expense": {
@@ -8,3 +8,16 @@ curl --request POST \
       "amount": -20
     }
   }'
+
+curl --request PUT \
+  --url https://vercel-tests-kappa.vercel.app/api?id=62b8b8c3a3cea032a19f8e06 \
+  --header 'content-type: application/json' \
+  --data '{
+    "expense": {
+      "timestamp": 1656273419244,
+      "note": "Test Expense 3",
+      "amount": -10
+    }
+  }'
+
+curl --request DELETE --url https://vercel-tests-kappa.vercel.app/api?id=62b8b8c3a3cea032a19f8e06
