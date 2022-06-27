@@ -21,3 +21,5 @@ curl --request PUT \
   }'
 
 curl --request DELETE --url https://vercel-tests-kappa.vercel.app/api?id=62b8b8c3a3cea032a19f8e06
+
+curl --request GET --url https://vercel-tests-kappa.vercel.app/api?fo=1656273210000&to=1656273220000
