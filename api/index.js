@@ -1,4 +1,5 @@
 import dbc from './_db';
+import { ObjectId } from 'mongodb';
 
 export default async (req, res) => {
 
@@ -12,6 +13,7 @@ export default async (req, res) => {
     console.log('req.body', req.body);
     switch (req.method) {
       case 'GET': {
+        const { to, fo } = req.query;
         return res.status(200).json({ data: await collection.find({}).toArray() });
       }
       case 'POST': {
@@ -21,11 +23,11 @@ export default async (req, res) => {
       case 'PUT': {
         const { id } = req.query;
         const { expense } = req.body;
-        return res.status(200).json({ data: await collection.findOneAndUpdate({ _id: id }, { $set: expense })});
+        return res.status(200).json({ data: await collection.findOneAndUpdate({ _id: ObjectId(id) }, { $set: expense })});
       }
       case 'DELETE': {
         const { id } = req.query;
-        return res.status(200).json({ data: await collection.findOneAndDelete({ _id: id })});
+        return res.status(200).json({ data: await collection.findOneAndDelete({ _id: ObjectId(id) })});
       }
       default:
         return res.status(400).json({ message: 'HTTP Method not supported' });
