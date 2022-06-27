@@ -1,0 +1,10 @@
+curl --request POST \
+  --url https://vercel-tests-rouge.vercel.app/api/ \
+  --header 'content-type: application/json' \
+  --data '{
+    "expense": {
+      "timestamp": 1656273419244,
+      "note": "Test Expense 3",
+      "amount": -20
+    }
+  }'

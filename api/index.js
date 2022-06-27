@@ -25,7 +25,7 @@ export default async (req, res) => {
       }
       case 'DELETE': {
         const { id } = req.query;
-        return res.status(200).json({ data: await collection.findOneAndDelete({ _id: id });
+        return res.status(200).json({ data: await collection.findOneAndDelete({ _id: id })});
       }
       default:
         return res.status(400).json({ message: 'HTTP Method not supported' });
