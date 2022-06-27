@@ -14,7 +14,7 @@ export default async (req, res) => {
     switch (req.method) {
       case 'GET': {
         const { to, fo } = req.query;
-        return res.status(200).json({ data: await collection.find({ timestamp: { $gt: Number(fo), $lt: Number(to) } }).toArray() });
+        return res.status(200).json({ data: await collection.find({ timestamp: { $gt: Number(fo), $lt: Number(to) } }, { sort: { timestamp: 1 } }).toArray() });
       }
       case 'POST': {
         const { expense } = req.body;
