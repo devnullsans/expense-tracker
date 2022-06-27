@@ -13,8 +13,8 @@ export default async (req, res) => {
     console.log('req.body', req.body);
     switch (req.method) {
       case 'GET': {
-        const { to, fo } = req.query;
-        return res.status(200).json({ data: await collection.find({ timestamp: { $gt: Number(fo), $lt: Number(to) } }, { sort: { timestamp: 1 } }).toArray() });
+        const { to } = req.query;
+        return res.status(200).json({ data: await collection.find({ timestamp: { $gte: +to, $lte: +to + 864e5 } }, { sort: { timestamp: 1 } }).toArray() });
       }
       case 'POST': {
         const { expense } = req.body;
