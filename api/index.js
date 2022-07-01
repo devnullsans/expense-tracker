@@ -18,6 +18,7 @@ export default async (req, res) => {
       }
       case 'POST': {
         const { expense } = req.body;
+        console.log(typeof req.body);
         return res.status(200).json({ data: await collection.insertOne(expense) });
       }
       case 'PUT': {
