@@ -17,8 +17,8 @@ export default async (req, res) => {
         return res.status(200).json({ data: await collection.find({ timestamp: { $gte: +to, $lte: +to + 864e5 } }, { sort: { timestamp: 1 } }).toArray() });
       }
       case 'POST': {
-        const { expense } = req.body;
-        console.log(typeof req.body);
+        const { expense } = JSON.parse(req.body);
+        console.log(expense);
         return res.status(200).json({ data: await collection.insertOne(expense) });
       }
       case 'PUT': {
