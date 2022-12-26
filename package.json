@@ -1,10 +1,10 @@
 {
-  "name": "vercel-tests",
-  "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "license": "MIT",
+  "name": "expense-tracker",
+  "version": "0.1",
+  "description": "track your expenses",
+  "author": "Paul S",
+  "license": "GPLV3",
   "dependencies": {
-    "mongodb": "^4.7.0"
+    "mongodb": "^4.13.0"
   }
 }
