@@ -5,7 +5,7 @@ const hexid = /^[a-f\d]{24}$/;
 const strts = /^\d+$/;
 export default async (req, res) => {
   const { authorization } = req.headers;
-  console.log("authorization", authorization);
+  // console.log("authorization", authorization);
   if (
     !(
       typeof authorization === "string" &&
@@ -19,12 +19,12 @@ export default async (req, res) => {
     case "GET":
       {
         const { id, to } = req.query;
-        console.log("req.query", req.query);
+        // console.log("req.query", req.query);
         if (typeof id === "string" && hexid.test(id)) {
           dbc()
             .then((db) => db.findOne({ _id: ObjectId(id) }))
             .then((doc) => {
-              console.log("findOne", doc);
+              // console.log("findOne", doc);
               res.status(200).json({ data: doc });
             })
             .catch((e) => res.status(502).json({ error: e.message }));
@@ -34,7 +34,7 @@ export default async (req, res) => {
               db.find({ timestamp: { $gte: +to } }, { sort: { timestamp: -1 } }).toArray()
             )
             .then((docs) => {
-              console.log("find.toArray", docs);
+              // console.log("find.toArray", docs);
               res.status(200).json({ data: docs });
             })
             .catch((e) => res.status(502).json({ error: e.message }));
@@ -46,7 +46,7 @@ export default async (req, res) => {
     case "POST":
       {
         const { timestamp, list } = req.body;
-        console.log("req.body", req.body);
+        // console.log("req.body", req.body);
         if (
           typeof timestamp === "number" &&
           timestamp > 0 &&
@@ -64,7 +64,7 @@ export default async (req, res) => {
               db.insertMany(list.map(({ amount, note }) => ({ amount, note, timestamp })))
             )
             .then((result) => {
-              console.log("insertMany", result);
+              // console.log("insertMany", result);
               res.status(200).json({ data: result });
             })
             .catch((e) => res.status(502).json({ error: e.message }));
@@ -76,7 +76,7 @@ export default async (req, res) => {
     case "PUT":
       {
         const { id, amount, note, timestamp } = req.body;
-        console.log("req.body", req.body);
+        // console.log("req.body", req.body);
         if (
           typeof id === "string" &&
           hexid.test(id) &&
@@ -96,7 +96,7 @@ export default async (req, res) => {
               )
             )
             .then((result) => {
-              console.log("updateOne", result);
+              // console.log("updateOne", result);
               res.status(200).json({ data: result });
             })
             .catch((e) => res.status(502).json({ error: e.message }));
@@ -108,12 +108,12 @@ export default async (req, res) => {
     case "DELETE":
       {
         const { id } = req.query;
-        console.log("req.query", req.query);
+        // console.log("req.query", req.query);
         if (typeof id === "string" && hexid.test(id)) {
           dbc()
             .then((db) => db.deleteOne({ _id: ObjectId(id) }))
             .then((result) => {
-              console.log("deleteOne", result);
+              // console.log("deleteOne", result);
               res.status(200).json({ data: result });
             })
             .catch((e) => res.status(502).json({ error: e.message }));
