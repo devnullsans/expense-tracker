@@ -1,5 +1,0 @@
-{
-  "redirects": [
-    { "source": "/((?!api$)(?!api/.*$)[^.]+)", "destination": "/", "permanent": false }
-  ]
-}
