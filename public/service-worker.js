@@ -5,7 +5,7 @@ const CACHE_NAME = 'cache-v0';
 const FILES_TO_CACHE = [
   '/',
   '/assets/index-e2d75fc6.css',
-  '/assets/index-98014ff0.js',
+  '/assets/index-f1d190e6.js',
   '/favicon.ico',
   '/logo192.png',
   '/logo512.png',
