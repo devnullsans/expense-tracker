@@ -1,25 +1,23 @@
 'use strict';
 
-// Update cache names any time any of the cached files change.
-// const CACHE_NAME = 'api-cache';
 const CACHE_NAME = 'cache-v0';
 
-// Add list of files to cache here.
 const FILES_TO_CACHE = [
   '/',
-  '/global.css',
-  '/build/bundle.css',
-  '/build/bundle.js',
-  '/favicon.png',
+  '/assets/index-e2d75fc6.css',
+  '/assets/index-98014ff0.js',
+  '/favicon.ico',
+  '/logo192.png',
+  '/logo512.png',
   '/manifest.json'
 ];
 
 self.addEventListener('install', (evt) => {
-  console.log('[ServiceWorker] Install');
+  // console.log('[ServiceWorker] Install');
 
   evt.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[ServiceWorker] Pre-caching offline pages');
+      // console.log('[ServiceWorker] Pre-caching offline pages');
       return cache.addAll(FILES_TO_CACHE);
     })
   );
@@ -28,13 +26,13 @@ self.addEventListener('install', (evt) => {
 });
 
 self.addEventListener('activate', (evt) => {
-  console.log('[ServiceWorker] Activate');
-  // Remove previous cached data from disk.
+  // console.log('[ServiceWorker] Activate');
+
   evt.waitUntil(
     caches.keys().then((keyList) => {
       return Promise.all(keyList.map((key) => {
         if (key !== CACHE_NAME) {
-          console.log('[ServiceWorker] Removing old cache', key);
+          // console.log('[ServiceWorker] Removing old cache', key);
           return caches.delete(key);
         }
       }));
@@ -45,7 +43,7 @@ self.addEventListener('activate', (evt) => {
 });
 
 self.addEventListener('fetch', (evt) => {
-  console.log('[ServiceWorker] Fetch', evt.request);
+  // console.log('[ServiceWorker] Fetch', evt.request);
 
   const { pathname } = new URL(evt.request.url);
 
@@ -66,7 +64,7 @@ async function fetchFirst(req) {
     await cache.put(req.url, res.clone());
     return res;
   } catch (err) {
-    console.info('fetchFirst', err);
+    // console.info('fetchFirst', err);
     const off = await caches.match(req);
     if (off == null) {
       const res = new Response(null, { status: 404 });
@@ -84,7 +82,7 @@ async function cacheFirst(req) {
     }
     return off;
   } catch (err) {
-    console.info('cacheFirst', err);
+    // console.info('cacheFirst', err);
     const off = await caches.match(req);
     if (off == null) {
       const res = new Response(null, { status: 404 });

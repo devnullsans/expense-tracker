@@ -1,10 +1,10 @@
 {
   "name": "expense-tracker",
   "version": "0.1",
-  "description": "track your expenses",
+  "description": "Track your daily expenses.",
   "author": "Paul S",
   "license": "GPLV3",
   "dependencies": {
-    "mongodb": "^4.13.0"
+    "mongodb": "^4.17.2"
   }
 }

@@ -1,11 +1,14 @@
 import dbc from "./_utils/db";
 import authr from "./_utils/auth";
 import { ObjectId } from "mongodb";
+
 const hexid = /^[a-f\d]{24}$/;
 const strts = /^\d+$/;
+
 export default async (req, res) => {
   const { authorization } = req.headers;
   // console.log("authorization", authorization);
+
   if (
     !(
       typeof authorization === "string" &&
@@ -15,6 +18,7 @@ export default async (req, res) => {
   ) {
     return res.status(401).json({ error: "Invalid or Missing Authorization Code" });
   }
+
   switch (req.method) {
     case "GET":
       {
@@ -43,6 +47,7 @@ export default async (req, res) => {
         }
       }
       break;
+
     case "POST":
       {
         const { timestamp, list } = req.body;
@@ -73,6 +78,7 @@ export default async (req, res) => {
         }
       }
       break;
+
     case "PUT":
       {
         const { id, amount, note, timestamp } = req.body;
@@ -105,6 +111,7 @@ export default async (req, res) => {
         }
       }
       break;
+
     case "DELETE":
       {
         const { id } = req.query;
@@ -122,6 +129,7 @@ export default async (req, res) => {
         }
       }
       break;
+
     default:
       res.status(405).json({ error: "Unsupported Method Requested" });
       break;
